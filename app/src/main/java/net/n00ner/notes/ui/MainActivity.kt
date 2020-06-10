@@ -1,7 +1,8 @@
-package net.n00ner.notes
+package net.n00ner.notes.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import net.n00ner.notes.R
 
 class MainActivity : AppCompatActivity() {
 
