@@ -5,13 +5,10 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import net.n00ner.notes.data.db.NotesDatabase
 import net.n00ner.notes.data.db.dao.NotesDao
-import net.n00ner.notes.data.db.entities.Note
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import java.io.IOException
-import org.junit.Assert.*
-import java.util.*
 
 class NotesDatabaseCRUDTest {
     private lateinit var notesDao: NotesDao
@@ -33,7 +30,7 @@ class NotesDatabaseCRUDTest {
 
     @Test
     fun writeNoteAndReadNote(){
-        val oldNote = NotesUtils.getTestNote()
+        val oldNote = TestUtils.getTestNote()
         notesDao.insertNote(oldNote)
         val note = notesDao.getNote(oldNote.noteId)
         assert(oldNote == note)
@@ -41,8 +38,8 @@ class NotesDatabaseCRUDTest {
 
     @Test
     fun generateNoteIdTest(){
-        val note = NotesUtils.getTestNote()
-        val anotherNote = NotesUtils.getTestNote()
+        val note = TestUtils.getTestNote()
+        val anotherNote = TestUtils.getTestNote()
         notesDao.insertNote(note)
         notesDao.insertNote(anotherNote)
         assert(notesDao.getNote(note.noteId) != notesDao.getNote(anotherNote.noteId))
@@ -50,7 +47,7 @@ class NotesDatabaseCRUDTest {
 
     @Test
     fun updateNoteTest(){
-        val note = NotesUtils.getTestNote()
+        val note = TestUtils.getTestNote()
         val title = "My Favorite Animals"
         notesDao.insertNote(note)
         note.title = title
@@ -60,7 +57,7 @@ class NotesDatabaseCRUDTest {
 
     @Test
     fun deleteNoteTest(){
-        val note = NotesUtils.getTestNote()
+        val note = TestUtils.getTestNote()
         notesDao.insertNote(note)
         if(notesDao.getAll().size == 0){
             assert(false)
@@ -72,7 +69,7 @@ class NotesDatabaseCRUDTest {
 
     @Test
     fun getAllNotesTest(){
-        NotesUtils.getNoteList().forEach {
+        TestUtils.getNoteList().forEach {
             notesDao.insertNote(it)
         }
         val notes = notesDao.getAll()
@@ -81,7 +78,7 @@ class NotesDatabaseCRUDTest {
 
     @Test
     fun getNoteTest(){
-        val notes = NotesUtils.getNoteList()
+        val notes = TestUtils.getNoteList()
         notes.forEach {
             notesDao.insertNote(it)
         }

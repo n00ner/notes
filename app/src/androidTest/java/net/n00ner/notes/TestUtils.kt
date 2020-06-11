@@ -1,17 +1,26 @@
 package net.n00ner.notes
 
 import net.n00ner.notes.data.db.entities.Note
+import net.n00ner.notes.data.db.entities.NoteAttachment
 import java.util.*
 import kotlin.collections.ArrayList
 
-class NotesUtils {
+class TestUtils {
     companion object{
         fun getTestNote(): Note {
             return Note( "Test", "text")
         }
 
+        fun getTestAttachment(): NoteAttachment{
+            return NoteAttachment("Test", "Test")
+        }
+
         fun getRandomNote(): Note{
-            return Note( getRandomString(), getRandomString())
+            return Note(getRandomString(), getRandomString())
+        }
+
+        fun getRandomAttachment(): NoteAttachment{
+            return NoteAttachment(getRandomString(), getRandomString())
         }
 
         fun getNoteList(): ArrayList<Note>{
